@@ -45,7 +45,7 @@ def summarize_chunk(text: str) -> str:
             from openai import OpenAI
             import time
             client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL, timeout=60, max_retries=3)
-            time.sleep(2)
+            time.sleep(0)
             response = client.chat.completions.create(
                 model=LLM_MODEL, temperature=0,
                 messages=[
@@ -81,7 +81,7 @@ def generate_hypothesis_questions(text: str, n_questions: int = 3) -> list[str]:
             from openai import OpenAI
             import time
             client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL, timeout=60, max_retries=3)
-            time.sleep(2)
+            time.sleep(0)
             response = client.chat.completions.create(
                 model=LLM_MODEL, temperature=0,
                 messages=[
@@ -115,7 +115,7 @@ def contextual_prepend(text: str, document_title: str = "") -> str:
             from openai import OpenAI
             import time
             client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL, timeout=60, max_retries=3)
-            time.sleep(2)
+            time.sleep(0)
             response = client.chat.completions.create(
                 model=LLM_MODEL, temperature=0,
                 messages=[
@@ -147,7 +147,7 @@ def extract_metadata(text: str) -> dict:
             from openai import OpenAI
             import time
             client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL, timeout=60, max_retries=3)
-            time.sleep(2)
+            time.sleep(0)
             response = client.chat.completions.create(
                 model=LLM_MODEL, temperature=0, response_format={"type": "json_object"},
                 messages=[
@@ -193,7 +193,7 @@ def _enrich_single_call(text: str, source: str) -> dict:
         from openai import OpenAI
         import time
         client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL, timeout=60, max_retries=3)
-        time.sleep(2)
+        time.sleep(0)
         response = client.chat.completions.create(
             model=LLM_MODEL, temperature=0, response_format={"type": "json_object"},
             messages=[

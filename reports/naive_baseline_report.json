@@ -1,9 +1,9 @@
 {
   "aggregate": {
-    "faithfulness": 0.6269444444444445,
-    "answer_relevancy": 0.8044848631778649,
-    "context_precision": 0.8666666665925,
-    "context_recall": 0.7458333333333333,
+    "faithfulness": 0.7904761904761904,
+    "answer_relevancy": 0.7330585212731477,
+    "context_precision": 0.9249999999437499,
+    "context_recall": 0.9083333333333332,
     "status": "success"
   },
   "num_questions": 20,

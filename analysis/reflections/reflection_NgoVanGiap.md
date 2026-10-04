@@ -22,13 +22,13 @@ Map từng concept trong lecture vào code bạn vừa viết trong lab:
 ## Phần 2: Khó khăn & Cách giải quyết (Challenges & Debugging)
 
 - **Lỗi kỹ thuật gặp phải:**
-  - `RateLimitError(Error code: 429 - {'error': {'message': 'Rate limit reached for model... on tokens per day (TPD)'}})`
-  - `ValueError: RAGAS returned missing or invalid metric scores`
+  - `RateLimitError` từ API do vượt quá giới hạn Tokens per day (TPD).
+  - Điểm số **Faithfulness giảm mạnh** (từ 0.79 xuống 0.53) khi chuyển sang Production RAG, mặc dù **Context Precision lại tăng** lên 0.96.
 - **Nguyên nhân gốc rễ & Cách debug:**
-  - *Nguyên nhân:* Groq API Free Tier có hạn mức 200,000 Tokens/ngày cho một số model. Evaluation bằng Ragas tiêu thụ token quá lớn khiến API ngắt kết nối.
-  - *Cách sửa:* Bọc API bằng `ThrottledChatOpenAI`, thêm `time.sleep()`, cấu hình `max_retries=3`, thay đổi sang các model khác nhau để lấy thêm quota Token mới, và điền 0.0 vào các giá trị bị lỗi NaN.
+  - *Về API:* Lỗi do chạy công cụ Ragas quá nặng. Đã giải quyết bằng cách đổi sang OpenRouter để dùng `gpt-4o-mini` không bị giới hạn khắt khe.
+  - *Về điểm số giảm:* Việc làm giàu dữ liệu (Enrichment metadata) giúp tìm kiếm đúng tài liệu hơn (Precision tăng), nhưng chính lượng thông tin phụ này lại gây nhiễu Prompt, làm LLM dễ sinh ra "ảo giác" (Faithfulness giảm).
 - **Kiến thức còn thiếu & Cách khắc phục:**
-  - *Bổ sung:* Cần nghiên cứu thêm về kỹ thuật tối ưu hóa chi phí khi evaluate RAG (ví dụ: dùng mô hình local nhẹ hơn để làm giám khảo thay vì gọi API liên tục).
+  - *Bổ sung:* Cần học cách tối ưu hóa lại Prompt ở bước Generation sao cho LLM tập trung vào nội dung chính thay vì bị phân tâm bởi Metadata. Cần kiểm soát chặt Temperature và System Prompt.
 
 ---
 

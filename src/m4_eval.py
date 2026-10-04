@@ -55,12 +55,12 @@ def evaluate_ragas(questions: list[str], answers: list[str],
 
         class ThrottledChatOpenAI(ChatOpenAI):
             async def _agenerate(self, *args, **kwargs):
-                await asyncio.sleep(2)  # Groq: 30 RPM → 2s delay
+                await asyncio.sleep(0)  # OpenRouter: No strict RPM limit
                 return await super()._agenerate(*args, **kwargs)
                 
             def _generate(self, *args, **kwargs):
                 import time
-                time.sleep(2)
+                time.sleep(0)
                 return super()._generate(*args, **kwargs)
 
         dataset = Dataset.from_dict({
