@@ -7,6 +7,11 @@ load_dotenv()
 
 # --- API Keys ---
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENAI_BASE_URL = os.getenv(
+    "OPENAI_BASE_URL",
+    "https://generativelanguage.googleapis.com/v1beta/openai/",
+)
+LLM_MODEL = os.getenv("LLM_MODEL", "gemini-3.5-flash-lite")
 
 # --- Qdrant ---
 QDRANT_HOST = "localhost"
